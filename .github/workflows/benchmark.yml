@@ -19,7 +19,9 @@ jobs:
       - uses: actions/checkout@v4
         
       - name: Run benchmark
-        run: dotnet run -c Release --job short --filter '*chunked_btree1_no_filter*' --project csharp-purehdf/src/Benchmarks/Benchmarks.csproj
+        run: |
+          cd csharp-purehdf
+          dotnet run -c Release --job short --filter '*chunked_btree1_no_filter*' --project src/Benchmarks/Benchmarks.csproj
         
       # gh-pages branch is updated and pushed automatically with extracted benchmark data
       - name: Store benchmark result

@@ -1,0 +1,1 @@
+`PYTHONPATH=external/pyfive pytest benchmarks/`

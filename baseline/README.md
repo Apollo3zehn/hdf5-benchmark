@@ -1,0 +1,1 @@
+`dotnet run -c Release --job short --filter '*chunked_btree1_no_filter*' --project src/Benchmarks/Benchmarks.csproj`

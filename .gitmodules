@@ -1,3 +1,3 @@
 [submodule "python-pyfive/external/pyfive"]
 	path = python-pyfive/external/pyfive
-	url = github.com:jjhelmus/pyfive
+	url = https://github.com/jjhelmus/pyfive

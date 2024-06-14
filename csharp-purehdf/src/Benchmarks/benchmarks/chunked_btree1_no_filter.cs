@@ -3,6 +3,7 @@ using PureHDF;
 
 namespace Benchmark;
 
+[JsonExporterAttribute.Full]
 public class chunked_btree1_no_filter
 {
     private IH5Dataset _dataset = default!;

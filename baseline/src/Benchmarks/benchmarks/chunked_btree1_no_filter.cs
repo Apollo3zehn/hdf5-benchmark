@@ -4,6 +4,7 @@ using HDF.PInvoke;
 
 namespace Benchmark;
 
+[JsonExporterAttribute.Full]
 public class chunked_btree1_no_filter
 {
     const string FILE_NAME = "chunked_no_filter.h5";

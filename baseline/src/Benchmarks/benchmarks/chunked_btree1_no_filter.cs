@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 using HDF.PInvoke;
 
-namespace Benchmark;
+namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
 public class chunked_btree1_no_filter

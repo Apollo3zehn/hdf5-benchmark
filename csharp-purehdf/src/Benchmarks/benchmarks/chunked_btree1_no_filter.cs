@@ -1,7 +1,7 @@
 using BenchmarkDotNet.Attributes;
 using PureHDF;
 
-namespace Benchmark;
+namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
 public class chunked_btree1_no_filter

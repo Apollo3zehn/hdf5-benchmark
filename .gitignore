@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+
+# .NET
+bin/
+obj/
+BenchmarkDotNet.Artifacts/
+
+# JAVA
+**/test/target/

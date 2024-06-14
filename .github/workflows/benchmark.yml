@@ -1,0 +1,34 @@
+# Do not run this workflow on pull request since this workflow has permission to modify contents.
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  # deployments permission to deploy GitHub pages website
+  deployments: write
+  # contents permission to update benchmark contents in gh-pages branch
+  contents: write
+
+jobs:
+  benchmark:
+    name: Performance regression check
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/checkout@v4
+        
+      - name: Run benchmark
+        run: dotnet run -c Release --job short --filter '*chunked_btree1_no_filter*' --project csharp-purehdf/src/Benchmarks/Benchmarks.csproj
+        
+      # gh-pages branch is updated and pushed automatically with extracted benchmark data
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: My Project .NET Benchmark
+          tool: 'benchmarkdotnet'
+          output-file-path: csharp-purehdf/BenchmarkDotNet.Artifacts/results/Benchmarks.chunked_btree1_no_filter-report-full.json
+          # Access token to deploy GitHub Pages branch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Push and deploy GitHub pages branch automatically
+          auto-push: true

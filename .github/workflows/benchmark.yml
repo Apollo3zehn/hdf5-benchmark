@@ -12,11 +12,13 @@ permissions:
 
 jobs:
   benchmark:
-    name: Performance regression check
+    name: Run benchmarks
     runs-on: ubuntu-latest
     steps:
       
       - uses: actions/checkout@v4
+        with:
+          submodules: "true"
 
       - name: Generate test files
         run: |
@@ -45,7 +47,7 @@ jobs:
         run: |
           java -version
           cd java-jhdf/test
-          mvn clean verify
+          mvn --batch-mode clean verify
           java -jar target/benchmarks.jar -rf json
 
       - name: Run python-pyfive benchmarks

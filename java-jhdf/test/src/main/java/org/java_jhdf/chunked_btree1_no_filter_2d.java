@@ -17,7 +17,7 @@ import org.openjdk.jmh.annotations.Warmup;
 import io.jhdf.HdfFile;
 import io.jhdf.api.Dataset;
 
-public class chunked_btree1_no_filter_1d {
+public class chunked_btree1_no_filter_2d {
 
     @State(Scope.Thread)
     public static class MyState {
@@ -26,7 +26,7 @@ public class chunked_btree1_no_filter_1d {
 
         @Setup()
         public void setup() {
-            HdfFile = new HdfFile(Paths.get("../../data/data/chunked_btree1_no_filter_1d.h5"));
+            HdfFile = new HdfFile(Paths.get("../../data/data/chunked_btree1_no_filter_2d.h5"));
             Dataset = HdfFile.getDatasetByPath("/dataset");
         }
         
@@ -42,9 +42,9 @@ public class chunked_btree1_no_filter_1d {
     @BenchmarkMode(Mode.SampleTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public void run(MyState state) {
-        long[] data = (long[]) state.Dataset.getData();
+        long[][] data = (long[][]) state.Dataset.getData();
 
-        if (data[1] != 1 || data[data.length - 1] != data.length - 1)
+        if (data[0][1] != 1 || data[0][100] != 100 || data[999][999] != 1000 * 1000 - 1)
             throw new RuntimeException("Invalid data");
     }
 

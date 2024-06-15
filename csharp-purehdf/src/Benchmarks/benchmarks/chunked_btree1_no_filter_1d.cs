@@ -11,7 +11,7 @@ public class chunked_btree1_no_filter_1d
 
     private NativeFile _h5File = default!;
     private IH5Dataset _dataset = default!;
-    private long[] _buffer = new long[1024 * 100];
+    private long[] _buffer = new long[1000 * 100];
 
     [GlobalSetup]
     public void GlobalSetup()

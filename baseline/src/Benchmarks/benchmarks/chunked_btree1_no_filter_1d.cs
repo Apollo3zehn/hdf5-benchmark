@@ -11,7 +11,7 @@ public class chunked_btree1_no_filter_1d
 
     private long _fileId = -1;
     private long _datasetId = -1;
-    private nint _buffer = Marshal.AllocHGlobal(1024 * 100 * sizeof(long));
+    private nint _buffer = Marshal.AllocHGlobal(1000 * 100 * sizeof(long));
 
     [GlobalSetup]
     public void GlobalSetup()

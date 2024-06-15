@@ -21,7 +21,7 @@ public class chunked_btree1_no_filter_1d
         if (_fileId < 0)
             throw new Exception("Could not open file");
         
-        _datasetId = H5D.open(_fileId, "chunked");
+        _datasetId = H5D.open(_fileId, "dataset");
     }
 
     [GlobalCleanup]

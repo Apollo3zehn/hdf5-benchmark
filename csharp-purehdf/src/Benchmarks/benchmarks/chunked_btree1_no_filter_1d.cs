@@ -17,7 +17,7 @@ public class chunked_btree1_no_filter_1d
     public void GlobalSetup()
     {
         _h5File = H5File.OpenRead(FILE_PATH);
-        _dataset = _h5File.Dataset("chunked");
+        _dataset = _h5File.Dataset("dataset");
     }
 
     [GlobalCleanup]

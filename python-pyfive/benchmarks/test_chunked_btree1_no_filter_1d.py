@@ -13,7 +13,7 @@ def setup():
     _file = pyfive.File(FILE_NAME)
 
 def run():
-    dataset = _file["chunked"]
+    dataset = _file["dataset"]
     return dataset
 
 def test(benchmark):

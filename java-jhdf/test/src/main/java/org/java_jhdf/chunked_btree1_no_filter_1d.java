@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
@@ -41,8 +42,9 @@ public class chunked_btree1_no_filter_1d {
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
+    @Fork(1)
     public void run(MyState state) {
-        long[] data = (long[]) state.Dataset.getData();
+        long[] data = (long[])state.Dataset.getData();
 
         if (data[1] != 1 || data[data.length - 1] != data.length - 1)
             throw new RuntimeException("Invalid data");

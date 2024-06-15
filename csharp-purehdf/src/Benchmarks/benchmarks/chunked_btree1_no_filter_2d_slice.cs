@@ -1,23 +1,26 @@
 using BenchmarkDotNet.Attributes;
 using PureHDF;
+using PureHDF.Selections;
 using PureHDF.VOL.Native;
 
 namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
-public class chunked_btree1_no_filter_2d
+public class chunked_btree1_no_filter_2d_slice
 {
     const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter_2d.h5";
 
     private NativeFile _h5File = default!;
 
-    private NativeDataset _dataset = default!;
+    private IH5Dataset _dataset = default!;
 
-    private H5DatasetAccess _datasetAccess = new H5DatasetAccess(
-        ChunkCache: new SimpleReadingChunkCache(byteCount: 10 * 1024 * 1024)
+    private readonly long[] _buffer = new long[100];
+
+    private readonly HyperslabSelection _fileSelection = new(
+        rank: 2, 
+        starts: [0, 100], 
+        blocks: [1, 100]
     );
-
-    private long[,] _buffer = new long[1000, 1000];
 
     [GlobalSetup]
     public void GlobalSetup()
@@ -35,9 +38,9 @@ public class chunked_btree1_no_filter_2d
     [Benchmark]
     public void Run()
     {
-        _dataset.Read(buffer: _buffer, datasetAccess: _datasetAccess);
+        _dataset.Read(buffer: _buffer, fileSelection: _fileSelection);
 
-        if (_buffer[0, 1] != 1 || _buffer[0, 100] != 100 || _buffer[999, 999] != 1000 * 1000 - 1)
+        if (_buffer[0] != 100 || _buffer[99] != 199)
             throw new Exception("Invalid data");
     }
 }

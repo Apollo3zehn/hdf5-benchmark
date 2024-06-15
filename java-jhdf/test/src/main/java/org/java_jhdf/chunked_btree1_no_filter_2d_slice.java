@@ -1,6 +1,7 @@
 package org.java_jhdf;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -18,7 +19,7 @@ import org.openjdk.jmh.annotations.Warmup;
 import io.jhdf.HdfFile;
 import io.jhdf.api.Dataset;
 
-public class chunked_btree1_no_filter_2d {
+public class chunked_btree1_no_filter_2d_slice {
 
     @State(Scope.Thread)
     public static class MyState {
@@ -45,8 +46,9 @@ public class chunked_btree1_no_filter_2d {
     @Fork(1)
     public void run(MyState state) {
         long[][] data = (long[][])state.Dataset.getData();
+        long[] slicedData = Arrays.copyOfRange(data[0], 100, 200);
 
-        if (data[0][1] != 1 || data[0][100] != 100 || data[999][999] != 1000 * 1000 - 1)
+        if (slicedData[0] != 100 || slicedData[99] != 199)
             throw new RuntimeException("Invalid data");
     }
 

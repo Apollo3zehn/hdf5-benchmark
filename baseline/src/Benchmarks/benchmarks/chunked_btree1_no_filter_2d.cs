@@ -5,13 +5,15 @@ using HDF.PInvoke;
 namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
-public class chunked_btree1_no_filter_1d
+public class chunked_btree1_no_filter_2d
 {
-    const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter_1d.h5";
+    const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter_2d.h5";
 
     private long _fileId = -1;
+
     private long _datasetId = -1;
-    private nint _buffer = Marshal.AllocHGlobal(1000 * 100 * sizeof(long));
+    
+    private nint _buffer = Marshal.AllocHGlobal(1000 * 1000 * sizeof(long));
 
     [GlobalSetup]
     public void GlobalSetup()
@@ -44,7 +46,7 @@ public class chunked_btree1_no_filter_1d
 
         var ptr = (long*)_buffer;
 
-        if (ptr[1] != 1 || ptr[100] != 100)
+        if (ptr[1] != 1 || ptr[100] != 100 || ptr[1000 * 1000 - 1] != 1000 * 1000 - 1)
             throw new Exception("Invalid data");
     }
 }

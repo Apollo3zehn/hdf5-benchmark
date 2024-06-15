@@ -30,5 +30,8 @@ public class chunked_btree1_no_filter_1d
     public void Run()
     {
         _dataset.Read(buffer: _buffer);
+
+        if (_buffer[1] != 1 || _buffer[100] != 100)
+            throw new Exception("Invalid data");
     }
 }

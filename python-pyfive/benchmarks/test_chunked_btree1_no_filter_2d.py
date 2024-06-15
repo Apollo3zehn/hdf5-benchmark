@@ -5,15 +5,18 @@ import pyfive
 FILE_NAME = "../data/data/chunked_btree1_no_filter_2d.h5"
 
 _file: dict[str, Any]
+_dataset: Any
 
 def setup():
 
     global _file
+    global _dataset
+
     _file = pyfive.File(FILE_NAME)
+    _dataset = _file["dataset"]
 
 def run():
-    dataset = _file["dataset"]
-    return dataset
+    return _dataset[:]
 
 def test_chunked_btree1_no_filter_2d(benchmark):
     result = benchmark.pedantic(run, setup=setup, iterations=1, rounds=1000)

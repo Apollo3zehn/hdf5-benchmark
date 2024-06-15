@@ -5,9 +5,9 @@ using HDF.PInvoke;
 namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
-public class chunked_btree1_no_filter
+public class chunked_btree1_no_filter_1d
 {
-    const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter.h5";
+    const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter_1d.h5";
 
     private long _fileId = -1;
     private long _datasetId = -1;

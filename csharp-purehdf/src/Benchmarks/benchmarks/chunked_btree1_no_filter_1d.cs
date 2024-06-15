@@ -5,9 +5,9 @@ using PureHDF.VOL.Native;
 namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
-public class chunked_btree1_no_filter
+public class chunked_btree1_no_filter_1d
 {
-    const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter.h5";
+    const string FILE_PATH = "../../../../../../../../../../data/data/chunked_btree1_no_filter_1d.h5";
 
     private NativeFile _h5File = default!;
     private IH5Dataset _dataset = default!;

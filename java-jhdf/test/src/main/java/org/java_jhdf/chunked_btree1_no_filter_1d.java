@@ -17,7 +17,7 @@ import org.openjdk.jmh.annotations.Warmup;
 import io.jhdf.HdfFile;
 import io.jhdf.api.Dataset;
 
-public class chunked_btree1_no_filter {
+public class chunked_btree1_no_filter_1d {
 
     @State(Scope.Thread)
     public static class MyState {
@@ -26,7 +26,7 @@ public class chunked_btree1_no_filter {
 
         @Setup()
         public void setup() {
-            HdfFile = new HdfFile(Paths.get("/tmp/chunked_btree1_no_filter.h5"));
+            HdfFile = new HdfFile(Paths.get("../../data/data/chunked_btree1_no_filter_1d.h5"));
             Dataset = HdfFile.getDatasetByPath("/chunked");
         }
         

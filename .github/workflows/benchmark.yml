@@ -17,20 +17,54 @@ jobs:
     steps:
       
       - uses: actions/checkout@v4
-        
-      - name: Run benchmark
+
+      - name: Generate test files
         run: |
+          python --version
+          cd data
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+
+          python data/chunked_btree1_no_filter_1d.py
+          python data/chunked_btree1_no_filter_2d.py
+
+      - name: Run baseline benchmarks
+        run: |
+          dotnet --info
+          cd baseline
+          dotnet run -c Release --job short --filter '*' --project src/Benchmarks/Benchmarks.csproj
+
+      - name: Run csharp-purehdf benchmarks
+        run: |
+          dotnet --info
           cd csharp-purehdf
-          dotnet run -c Release --job short --filter '*chunked_btree1_no_filter_1d*' --project src/Benchmarks/Benchmarks.csproj
+          dotnet run -c Release --job short --filter '*' --project src/Benchmarks/Benchmarks.csproj
+
+      - name: Run java-jhdf benchmarks
+        run: |
+          java -version
+          cd java-jhdf/test
+          mvn clean verify
+          java -jar target/benchmarks.jar -rf json
+
+      - name: Run python-pyfive benchmarks
+        run: |
+          python --version
+          cd python-pyfive
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          PYTHONPATH=external/pyfive pytest benchmarks/ --benchmark-json output.json
         
-      # gh-pages branch is updated and pushed automatically with extracted benchmark data
-      - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          name: chunked_btree1_no_filter_1d
-          tool: 'benchmarkdotnet'
-          output-file-path: csharp-purehdf/BenchmarkDotNet.Artifacts/results/Benchmarks.chunked_btree1_no_filter_1d-report-full.json
-          # Access token to deploy GitHub Pages branch
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Push and deploy GitHub pages branch automatically
-          auto-push: true
+      # # gh-pages branch is updated and pushed automatically with extracted benchmark data
+      # - name: Store benchmark result
+      #   uses: benchmark-action/github-action-benchmark@v1
+      #   with:
+      #     name: chunked_btree1_no_filter_1d
+      #     tool: 'benchmarkdotnet'
+      #     output-file-path: csharp-purehdf/BenchmarkDotNet.Artifacts/results/Benchmarks.chunked_btree1_no_filter_1d-report-full.json
+      #     # Access token to deploy GitHub Pages branch
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     # Push and deploy GitHub pages branch automatically
+      #     auto-push: true

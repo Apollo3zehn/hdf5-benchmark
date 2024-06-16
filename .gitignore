@@ -4,6 +4,7 @@
 __pycache__/
 .pytest_cache/
 .venv/
+python-pyfive/output.json
 
 # .NET
 bin/
@@ -12,3 +13,4 @@ BenchmarkDotNet.Artifacts/
 
 # JAVA
 **/test/target/
+java-jhdf/test/jmh-result.json

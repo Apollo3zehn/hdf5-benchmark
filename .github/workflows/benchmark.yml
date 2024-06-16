@@ -37,10 +37,10 @@ jobs:
           cd baseline
           dotnet run -c Release --job short --filter '*' --project src/Benchmarks/Benchmarks.csproj
 
-      - name: Run csharp-purehdf benchmarks
+      - name: Run dotnet-purehdf benchmarks
         run: |
           dotnet --info
-          cd csharp-purehdf
+          cd dotnet-purehdf
           dotnet run -c Release --job short --filter '*' --project src/Benchmarks/Benchmarks.csproj
 
       - name: Run java-jhdf benchmarks
@@ -65,7 +65,7 @@ jobs:
       #   with:
       #     name: chunked_btree1_no_filter_1d
       #     tool: 'benchmarkdotnet'
-      #     output-file-path: csharp-purehdf/BenchmarkDotNet.Artifacts/results/Benchmarks.chunked_btree1_no_filter_1d-report-full.json
+      #     output-file-path: dotnet-purehdf/BenchmarkDotNet.Artifacts/results/Benchmarks.chunked_btree1_no_filter_1d-report-full.json
       #     # Access token to deploy GitHub Pages branch
       #     github-token: ${{ secrets.GITHUB_TOKEN }}
       #     # Push and deploy GitHub pages branch automatically

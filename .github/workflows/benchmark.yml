@@ -32,7 +32,7 @@ jobs:
 
           python data/chunked_btree1_no_filter_1d.py
           python data/chunked_btree1_no_filter_2d.py
-          python data/chunked_btree1_shuffle_deflate_2d.py
+          python data/chunked_btree1_shuffle_deflate_1d.py
 
       - name: Run baseline benchmarks
         run: |

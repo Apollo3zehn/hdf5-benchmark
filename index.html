@@ -73,15 +73,17 @@
                                 toolData.push(benchmarkResult.Mean);
 
                             else
-                                toolData.push(undefined);
+                                toolData.push(NaN);
                         }
 
                         else {
-                            toolData.push(undefined);
+                            toolData.push(NaN);
                         }
                     }    
                 }    
             }
+
+            console.log(y);
 
             // render charts
             const container = document.getElementById("container");

@@ -47,5 +47,54 @@
         }
       }
     }
+  },
+  {
+    "Commit": "7dbbfa6",
+    "CommitMessage": "Commit to trigger another benchmark",
+    "DateTime": "2024-06-17T08:40:42.0720042Z",
+    "TestData": {
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 1037.0791009114585
+        },
+        "dotnet-purehdf": {
+          "Mean": 2145.8349114583334
+        },
+        "java-jhdf": {
+          "Mean": 5046.0803504231
+        },
+        "python-pyfive": {
+          "Mean": 2262.4173870005393
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 123.94236352539062
+        },
+        "dotnet-purehdf": {
+          "Mean": 677.4281105143228
+        },
+        "java-jhdf": {
+          "Mean": 2161.052383088871
+        },
+        "python-pyfive": {
+          "Mean": 762.6568620009664
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 1.4764172096252441
+        },
+        "dotnet-purehdf": {
+          "Mean": 305.46502197265625
+        },
+        "java-jhdf": {
+          "Mean": 4971.365920078932
+        },
+        "python-pyfive": {
+          "Mean": 2248.3066949997124
+        }
+      }
+    }
   }
 ]

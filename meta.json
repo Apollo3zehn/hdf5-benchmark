@@ -4,7 +4,7 @@
         "chunked_btree1_no_filter_2d": "Chunked (btree1, unfiltered, 2D)",
         "chunked_btree1_no_filter_2d_slice": "Chunked (btree1, unfiltered, 2D, sliced)",
         "chunked_btree1_shuffle_deflate_1d": "Chunked (btree1, Shuffle + Deflate, 1D)",
-        "chunked_single_chunk_no_filter_2d": "Chunked (btree1, unfiltered, 2D)",
+        "chunked_single_chunk_no_filter_2d": "Chunked (single chunk, unfiltered, 2D)",
         "chunked_implicit_no_filter_2d": "Chunked (implicit, unfiltered, 2D)",
         "chunked_fixed_array_no_filter_2d": "Chunked (fixed array, unfiltered, 2D)",
         "chunked_fixed_array_paged_no_filter_2d": "Chunked (fixed array (paged), unfiltered, 2D)",

@@ -3,14 +3,21 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 // Load or create database
-const string DATABASE_FILE = "/tmp/database.json";
+const string GH_PAGES_FOLDER = "../.gh-pages";
+const string DATABASE_FILE_PATH = $"{GH_PAGES_FOLDER}/database.json";
 
-var database = File.Exists(DATABASE_FILE)
-    ? JsonSerializer.Deserialize<List<CommitData>>(File.ReadAllText(DATABASE_FILE)) 
+Directory.CreateDirectory(GH_PAGES_FOLDER);
+
+var database = File.Exists(DATABASE_FILE_PATH)
+    ? JsonSerializer.Deserialize<List<CommitData>>(File.ReadAllText(DATABASE_FILE_PATH)) 
         ?? throw new Exception("invalid database")
     : new();
 
+// Get commit info
 var (commit, commitMessage) = GetCommitInfo();
+
+if (database.Any(current => current.Commit == commit))
+    throw new Exception("Commit already exists");
 
 // Initialize new commit data object
 var commitData = new CommitData(
@@ -26,26 +33,26 @@ database.Add(commitData);
 {
     // baseline
     const string BASELINE_ROOT = "../baseline/BenchmarkDotNet.Artifacts/results";
-    ExtractDotNetResult(BASELINE_ROOT, "baseline (C)");
+    ExtractDotNetResult(BASELINE_ROOT, "baseline" /* HDF5 1.10.6 (C) */);
 
     // dotnet-purehdf
     const string DOTNET_PUREHDF_ROOT = "../dotnet-purehdf/BenchmarkDotNet.Artifacts/results";
-    ExtractDotNetResult(DOTNET_PUREHDF_ROOT, "PureHDF (.NET)");
+    ExtractDotNetResult(DOTNET_PUREHDF_ROOT, "dotnet-purehdf" /* PureHDF (.NET) */);
 
     // java-jhdf
-    const string JAVA_JHDF_FILE = "../java-jhdf/test/jmh-result.json";
-    ExtractJavaResult(JAVA_JHDF_FILE, "jHDF (Java)");
+    const string JAVA_JHDF_FILE_PATH = "../java-jhdf/test/jmh-result.json";
+    ExtractJavaResult(JAVA_JHDF_FILE_PATH, "java-jhdf" /* jHDF (Java) */);
 
     // python-pyfive
-    const string PYTHON_PYFIVE_FILE = "../python-pyfive/output.json";
-    ExtractPythonResult(PYTHON_PYFIVE_FILE, "pyfive (Python)");
+    const string PYTHON_PYFIVE_FILE_PATH = "../python-pyfive/output.json";
+    ExtractPythonResult(PYTHON_PYFIVE_FILE_PATH, "python-pyfive" /* pyfive (Python) */);
 }
 
 // Save database
 var options = new JsonSerializerOptions { WriteIndented = true };
 var jsonString = JsonSerializer.Serialize(database, options);
 
-File.WriteAllText(DATABASE_FILE, jsonString);
+File.WriteAllText(DATABASE_FILE_PATH, jsonString);
 
 // Methods and class definitions
 void ExtractDotNetResult(string root, string library)
@@ -67,10 +74,6 @@ void ExtractDotNetResult(string root, string library)
 
         var mean = statistics
             .GetProperty("Mean")
-            .GetDouble() / 1000;
-
-        var std = statistics
-            .GetProperty("StandardDeviation")
             .GetDouble() / 1000;
 
         var benchmarkResult = new BenchmarkResult(

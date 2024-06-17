@@ -1,13 +1,9 @@
-# Do not run this workflow on pull request since this workflow has permission to modify contents.
 on:
   push:
     branches:
       - master
 
 permissions:
-  # deployments permission to deploy GitHub pages website
-  deployments: write
-  # contents permission to update benchmark contents in gh-pages branch
   contents: write
 
 jobs:
@@ -19,6 +15,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: "true"
+
+      - uses: actions/checkout@v4
+        name: Load database
+        with:
+          ref: gh-pages
+          path: .gh-pages
 
       - name: Generate test files
         run: |
@@ -58,15 +60,15 @@ jobs:
           source .venv/bin/activate
           pip install -r requirements.txt
           PYTHONPATH=external/pyfive pytest benchmarks/ --benchmark-json output.json
-        
-      # # gh-pages branch is updated and pushed automatically with extracted benchmark data
-      # - name: Store benchmark result
-      #   uses: benchmark-action/github-action-benchmark@v1
-      #   with:
-      #     name: chunked_btree1_no_filter_1d
-      #     tool: 'benchmarkdotnet'
-      #     output-file-path: dotnet-purehdf/BenchmarkDotNet.Artifacts/results/Benchmarks.chunked_btree1_no_filter_1d-report-full.json
-      #     # Access token to deploy GitHub Pages branch
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     # Push and deploy GitHub pages branch automatically
-      #     auto-push: true
+
+      - name: Process results
+        run: |
+          cd processing
+          dotnet run
+
+      - name: Store database
+        run: |
+          cd .gh-pages
+          git add database.json
+          git commit -m "Update database"
+          git push

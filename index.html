@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HDF5 benchmark</title>
+</head>
+<body>
+    <div id="container" style="
+        display: flex; 
+        flex-direction: column; 
+        gap: 3rem;
+        padding: 1rem;">
+        <!-- to be filled -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        async function main()
+        {
+            const response1 = await fetch("https://raw.githubusercontent.com/Apollo3zehn/hdf5-benchmark/gh-pages/database.json");
+            const database = await response1.json();
+
+            const response2 = await fetch("https://raw.githubusercontent.com/Apollo3zehn/hdf5-benchmark/gh-pages/meta.json");
+            const meta = await response2.json();
+            const benchmarkNameMap = meta.benchmarks;
+            const toolNameMap = meta.tools;
+           
+            // prepare x and y data
+            const x = database;
+            const y = {};
+
+            for (const commitData of database) {
+                
+                for (const benchmarkName of Object.keys(benchmarkNameMap)) {
+                
+                    for (const toolName of Object.keys(toolNameMap)) {
+                
+                        let benchmarkData = undefined;
+
+                        // get or create benchmarkData
+                        if (benchmarkName in y) {
+                            benchmarkData = y[benchmarkName];
+                        } 
+                        
+                        else {
+                            benchmarkData = {};
+                            y[benchmarkName] = benchmarkData;
+                        }
+
+                        // get or create toolData
+                        let toolData = undefined;
+
+                        if (toolName in benchmarkData) {
+                            toolData = benchmarkData[toolName];
+                        } 
+                        
+                        else {
+                            toolData = [];
+                            benchmarkData[toolName] = toolData;
+                        }
+                        
+                        // push data
+                        const originalToolData = commitData.TestData[benchmarkName];
+
+                        if (originalToolData) {
+
+                            const benchmarkResult = originalToolData[toolName];
+
+                            if (benchmarkResult)
+                                toolData.push(benchmarkResult.Mean);
+
+                            else
+                                toolData.push(undefined);
+                        }
+
+                        else {
+                            toolData.push(undefined);
+                        }
+                    }    
+                }    
+            }
+
+            // render charts
+            const container = document.getElementById("container");
+        
+            for (const [benchmarkName, benchmarkData] of Object.entries(y)) {
+
+                var ctx = document.createElement("canvas");
+                ctx.height = 400;
+
+                container.appendChild(ctx);
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: x.map(current => [
+                            current.CommitMessage.length > 23
+                                ? current.CommitMessage.substring(0, 20) + '...'
+                                : current.CommitMessage,
+                            current.Commit
+                        ]),
+                        datasets: Object
+                            .entries(benchmarkData)
+                            .map(([toolName, toolData]) => ({
+                                label: toolNameMap[toolName],
+                                data: toolData,
+                            }))
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                ticks: {
+                                    maxRotation: 90,
+                                    minRotation: 90
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: "µs / operation"
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: benchmarkNameMap[benchmarkName]
+                            },
+                            tooltip: { 
+                                callbacks: {
+                                    label: function(context) {
+                                        var label = context.dataset.label || '';
+
+                                        if (label)
+                                            label += ': ';
+
+                                        if (context.parsed.y !== null)
+                                            label += Math.round(context.parsed.y).toLocaleString() + " µs";
+                                        
+                                        return label;
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                });
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>

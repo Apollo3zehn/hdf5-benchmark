@@ -26,13 +26,13 @@ public class chunked_single_chunk_no_filter_2d
             throw new Exception("Could not open file");
         
         _datasetId = H5D.open(_fileId, "chunked_single_chunk");
-        _daplId = H5P.create(H5P.DATASET_ACCESS);
+        _daplId = H5P.create(H5P.DATASET_XFER);
 
         H5P.set_chunk_cache(
             _daplId, 
             rdcc_nslots: 521, 
             rdcc_nbytes: 2500 * 4 * sizeof(int), 
-            rdcc_w0: 0
+            rdcc_w0: 0.75
         );
     }
 

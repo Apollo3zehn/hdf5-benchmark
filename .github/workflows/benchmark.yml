@@ -16,12 +16,6 @@ jobs:
         with:
           submodules: "true"
 
-      - uses: actions/checkout@v4
-        name: Load database
-        with:
-          ref: gh-pages
-          path: .gh-pages
-
       - name: Generate test files
         run: |
           cd data
@@ -62,6 +56,12 @@ jobs:
           source .venv/bin/activate
           pip install -r requirements.txt
           PYTHONPATH=external/pyfive pytest benchmarks/ --benchmark-json output.json
+
+      - uses: actions/checkout@v4
+        name: Load database
+        with:
+          ref: gh-pages
+          path: .gh-pages
 
       - name: Process results
         run: |

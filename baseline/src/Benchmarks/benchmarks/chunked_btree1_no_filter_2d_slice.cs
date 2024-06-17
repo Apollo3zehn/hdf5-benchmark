@@ -42,7 +42,7 @@ public class chunked_btree1_no_filter_2d_slice
 
         if (result < 0)
             throw new Exception("Could not select hyperslab");
-    } 
+    }
 
     [GlobalCleanup]
     public void GlobalCleanup()

@@ -2,7 +2,8 @@
     "benchmarks": {
         "chunked_btree1_no_filter_1d": "Chunked (btree1, unfiltered, 1D)",
         "chunked_btree1_no_filter_2d": "Chunked (btree1, unfiltered, 2D)",
-        "chunked_btree1_no_filter_2d_slice": "Chunked (btree1, unfiltered, 2D, sliced)"
+        "chunked_btree1_no_filter_2d_slice": "Chunked (btree1, unfiltered, 2D, sliced)",
+        "chunked_btree1_shuffle_deflate_2d_slice": "Chunked (btree1, Shuffle + Deflate, 2D, sliced)"
     },
     "tools": {
         "baseline": "HDF5 1.10.6 (C)",

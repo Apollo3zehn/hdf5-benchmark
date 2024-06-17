@@ -33,19 +33,19 @@ database.Add(commitData);
 {
     // baseline
     const string BASELINE_ROOT = "../baseline/BenchmarkDotNet.Artifacts/results";
-    ExtractDotNetResult(BASELINE_ROOT, "baseline" /* HDF5 1.10.6 (C) */);
+    ExtractDotNetResult(BASELINE_ROOT, "baseline");
 
     // dotnet-purehdf
     const string DOTNET_PUREHDF_ROOT = "../dotnet-purehdf/BenchmarkDotNet.Artifacts/results";
-    ExtractDotNetResult(DOTNET_PUREHDF_ROOT, "dotnet-purehdf" /* PureHDF (.NET) */);
+    ExtractDotNetResult(DOTNET_PUREHDF_ROOT, "dotnet-purehdf");
 
     // java-jhdf
     const string JAVA_JHDF_FILE_PATH = "../java-jhdf/test/jmh-result.json";
-    ExtractJavaResult(JAVA_JHDF_FILE_PATH, "java-jhdf" /* jHDF (Java) */);
+    ExtractJavaResult(JAVA_JHDF_FILE_PATH, "java-jhdf");
 
     // python-pyfive
     const string PYTHON_PYFIVE_FILE_PATH = "../python-pyfive/output.json";
-    ExtractPythonResult(PYTHON_PYFIVE_FILE_PATH, "python-pyfive" /* pyfive (Python) */);
+    ExtractPythonResult(PYTHON_PYFIVE_FILE_PATH, "python-pyfive");
 }
 
 // Save database

@@ -24,7 +24,6 @@ jobs:
 
       - name: Generate test files
         run: |
-          python --version
           cd data
           python -m venv .venv
           source .venv/bin/activate
@@ -33,6 +32,8 @@ jobs:
           python data/chunked_btree1_no_filter_1d.py
           python data/chunked_btree1_no_filter_2d.py
           python data/chunked_btree1_shuffle_deflate_1d.py
+
+          dotnet run
 
       - name: Run baseline benchmarks
         run: |

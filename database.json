@@ -1,1 +1,51 @@
-[]
+[
+  {
+    "Commit": "eacaa49",
+    "CommitMessage": "Fix pipeline",
+    "DateTime": "2024-06-17T07:54:11.4149066Z",
+    "TestData": {
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 1093.2906686197916
+        },
+        "dotnet-purehdf": {
+          "Mean": 2091.46319140625
+        },
+        "java-jhdf": {
+          "Mean": 4868.24471570954
+        },
+        "python-pyfive": {
+          "Mean": 2056.3079820002486
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 128.02105249023438
+        },
+        "dotnet-purehdf": {
+          "Mean": 688.9330432942709
+        },
+        "java-jhdf": {
+          "Mean": 2173.2882352436163
+        },
+        "python-pyfive": {
+          "Mean": 749.2550180006674
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 1.41011989402771
+        },
+        "dotnet-purehdf": {
+          "Mean": 301.49127913411456
+        },
+        "java-jhdf": {
+          "Mean": 4816.447632887187
+        },
+        "python-pyfive": {
+          "Mean": 2023.8995329999625
+        }
+      }
+    }
+  }
+]

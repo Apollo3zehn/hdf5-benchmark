@@ -243,5 +243,68 @@
         }
       }
     }
+  },
+  {
+    "Commit": "6edf76d",
+    "CommitMessage": "Fix CI",
+    "DateTime": "2024-06-17T11:18:27.9344678Z",
+    "TestData": {
+      "chunked_btree1_shuffle_deflate_1d": {
+        "baseline": {
+          "Mean": 34.237486317952474
+        },
+        "dotnet-purehdf": {
+          "Mean": 841.1807662760416
+        },
+        "java-jhdf": {
+          "Mean": 2024.3126531932078
+        },
+        "python-pyfive": {
+          "Mean": 1506.7078989991955
+        }
+      },
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 1112.9214381510417
+        },
+        "dotnet-purehdf": {
+          "Mean": 2199.4508098958336
+        },
+        "java-jhdf": {
+          "Mean": 5172.8069572385375
+        },
+        "python-pyfive": {
+          "Mean": 2258.497802000477
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 121.71245969645183
+        },
+        "dotnet-purehdf": {
+          "Mean": 678.8463077799479
+        },
+        "java-jhdf": {
+          "Mean": 2106.9952726508295
+        },
+        "python-pyfive": {
+          "Mean": 764.1971089994968
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 1.4582384916941327
+        },
+        "dotnet-purehdf": {
+          "Mean": 307.92488932291667
+        },
+        "java-jhdf": {
+          "Mean": 5190.880264462809
+        },
+        "python-pyfive": {
+          "Mean": 2364.179568999077
+        }
+      }
+    }
   }
 ]

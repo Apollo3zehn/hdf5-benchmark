@@ -25,10 +25,10 @@ public class chunked_btree1_no_filter_1d
         if (_fileId < 0)
             throw new Exception("Could not open file");
         
-        _datasetId = H5D.open(_fileId, "dataset");
-        _daplId = H5P.create(H5P.DATASET_XFER);
-
+        _daplId = H5P.create(H5P.DATASET_ACCESS);
         H5P.set_chunk_cache(_daplId, rdcc_nslots: 0, rdcc_nbytes: 0, rdcc_w0: 0);
+
+        _datasetId = H5D.open(_fileId, "dataset", _daplId);
     }
 
     [GlobalCleanup]
@@ -47,7 +47,7 @@ public class chunked_btree1_no_filter_1d
     [Benchmark]
     public unsafe void Run()
     {
-        var result = H5D.read(_datasetId, H5T.NATIVE_INT64, H5S.ALL, H5S.ALL, _daplId, _buffer);
+        var result = H5D.read(_datasetId, H5T.NATIVE_INT64, H5S.ALL, H5S.ALL, H5P.DEFAULT, _buffer);
 
         if (result < 0)
             throw new Exception("Could not read data");

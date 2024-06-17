@@ -25,8 +25,7 @@ public class chunked_extensible_array_secondary_blocks_no_filter_2d
         if (_fileId < 0)
             throw new Exception("Could not open file");
         
-        _datasetId = H5D.open(_fileId, "chunked_extensible_array_secondary_blocks");
-        _daplId = H5P.create(H5P.DATASET_XFER);
+        _daplId = H5P.create(H5P.DATASET_ACCESS);
 
         H5P.set_chunk_cache(
             _daplId, 
@@ -34,6 +33,8 @@ public class chunked_extensible_array_secondary_blocks_no_filter_2d
             rdcc_nbytes: 2500 * 4 * sizeof(int), 
             rdcc_w0: 0.75
         );
+
+        _datasetId = H5D.open(_fileId, "chunked_extensible_array_secondary_blocks", _daplId);
     }
 
     [GlobalCleanup]
@@ -52,7 +53,7 @@ public class chunked_extensible_array_secondary_blocks_no_filter_2d
     [Benchmark]
     public unsafe void Run()
     {
-        var result = H5D.read(_datasetId, H5T.NATIVE_INT32, H5S.ALL, H5S.ALL, _daplId, _buffer);
+        var result = H5D.read(_datasetId, H5T.NATIVE_INT32, H5S.ALL, H5S.ALL, H5P.DEFAULT, _buffer);
 
         if (result < 0)
             throw new Exception("Could not read data");

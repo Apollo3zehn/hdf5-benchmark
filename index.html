@@ -90,8 +90,11 @@
 
                 var ctx = document.createElement("canvas");
                 ctx.height = 400;
+                
+                var directContainer = document.createElement("div");
+                directContainer.appendChild(ctx);
 
-                container.appendChild(ctx);
+                container.appendChild(directContainer);
 
                 new Chart(ctx, {
                     type: 'line',
@@ -110,6 +113,7 @@
                             }))
                     },
                     options: {
+                        maintainAspectRatio: false,
                         scales: {
                             x: {
                                 ticks: {
@@ -144,7 +148,7 @@
                                         return label;
                                     }
                                 }
-                            } 
+                            }
                         }
                     }
                 });

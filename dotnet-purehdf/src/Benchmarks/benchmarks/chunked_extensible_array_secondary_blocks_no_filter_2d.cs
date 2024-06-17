@@ -5,7 +5,7 @@ using PureHDF.VOL.Native;
 namespace Benchmarks;
 
 [JsonExporterAttribute.Full]
-public class chunked_extensible_array_elements_secondary_blocks_2d
+public class chunked_extensible_array_secondary_blocks_2d
 {
     const string FILE_PATH = "../../../../../../../../../../data/data/chunked_new_chunk_indices_no_filter_2d.h5";
 

@@ -194,5 +194,54 @@
         }
       }
     }
+  },
+  {
+    "Commit": "20eebc0",
+    "CommitMessage": "Improve README.md",
+    "DateTime": "2024-06-17T10:14:13.6593233Z",
+    "TestData": {
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 1112.3766100260418
+        },
+        "dotnet-purehdf": {
+          "Mean": 1953.1008567708332
+        },
+        "java-jhdf": {
+          "Mean": 5224.681182895418
+        },
+        "python-pyfive": {
+          "Mean": 2460.289205000322
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 122.84531575520833
+        },
+        "dotnet-purehdf": {
+          "Mean": 694.1036341145834
+        },
+        "java-jhdf": {
+          "Mean": 2166.805895464363
+        },
+        "python-pyfive": {
+          "Mean": 762.0974769999123
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 1.4734870134989422
+        },
+        "dotnet-purehdf": {
+          "Mean": 302.42328955078125
+        },
+        "java-jhdf": {
+          "Mean": 5196.853894736842
+        },
+        "python-pyfive": {
+          "Mean": 2409.8432249997186
+        }
+      }
+    }
   }
 ]

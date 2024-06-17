@@ -96,5 +96,54 @@
         }
       }
     }
+  },
+  {
+    "Commit": "a3b1743",
+    "CommitMessage": "Trigger again",
+    "DateTime": "2024-06-17T09:10:39.0493586Z",
+    "TestData": {
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 1013.5419622395834
+        },
+        "dotnet-purehdf": {
+          "Mean": 1992.4233411458333
+        },
+        "java-jhdf": {
+          "Mean": 5103.179727410398
+        },
+        "python-pyfive": {
+          "Mean": 2193.563495000575
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 123.93652335611979
+        },
+        "dotnet-purehdf": {
+          "Mean": 683.8272960611979
+        },
+        "java-jhdf": {
+          "Mean": 2092.4704908180297
+        },
+        "python-pyfive": {
+          "Mean": 745.3057200001751
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 1.4667265173594157
+        },
+        "dotnet-purehdf": {
+          "Mean": 301.7944261067708
+        },
+        "java-jhdf": {
+          "Mean": 5169.458886850152
+        },
+        "python-pyfive": {
+          "Mean": 2184.150029999955
+        }
+      }
+    }
   }
 ]

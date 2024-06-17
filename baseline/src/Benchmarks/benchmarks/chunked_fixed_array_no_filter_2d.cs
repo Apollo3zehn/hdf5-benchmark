@@ -10,7 +10,11 @@ public class chunked_fixed_array_no_filter_2d
     const string FILE_PATH = "../../../../../../../../../../data/data/chunked_new_chunk_indices_no_filter_2d.h5";
 
     private long _fileId = -1;
+
     private long _datasetId = -1;
+
+    private long _daplId = -1;
+
     private nint _buffer = Marshal.AllocHGlobal(2500 * 4 * sizeof(int));
 
     [GlobalSetup]
@@ -22,11 +26,22 @@ public class chunked_fixed_array_no_filter_2d
             throw new Exception("Could not open file");
         
         _datasetId = H5D.open(_fileId, "chunked_fixed_array");
+        _daplId = H5P.create(H5P.DATASET_ACCESS);
+
+        H5P.set_chunk_cache(
+            _daplId, 
+            rdcc_nslots: 521, 
+            rdcc_nbytes: 2500 * 4 * sizeof(int), 
+            rdcc_w0: 0
+        );
     }
 
     [GlobalCleanup]
     public void GlobalCleanup()
     {
+        if (H5I.is_valid(_daplId) > 0)
+            _ = H5P.close(_daplId);
+
         if (H5I.is_valid(_datasetId) > 0)
             _ = H5D.close(_datasetId);
 
@@ -37,7 +52,7 @@ public class chunked_fixed_array_no_filter_2d
     [Benchmark]
     public unsafe void Run()
     {
-        var result = H5D.read(_datasetId, H5T.NATIVE_INT32, H5S.ALL, H5S.ALL, H5P.DEFAULT, _buffer);
+        var result = H5D.read(_datasetId, H5T.NATIVE_INT32, H5S.ALL, H5S.ALL, _daplId, _buffer);
 
         if (result < 0)
             throw new Exception("Could not read data");

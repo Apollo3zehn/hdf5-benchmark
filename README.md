@@ -12,3 +12,10 @@ You can view the graphs here: https://apollo3zehn.github.io/hdf5-benchmark/
 
 # Development
 Add `--recurse-submodules` to your `git clone` command to clone the submodules as well. See `.github/workflows/benchmark.yml` to see how to run the individual benchmarks.
+
+# Remarks
+Chunk caches are very important to improve performance. However, they also impact benchmarks negatively in that when the benchmark repeats the read operation on the very same dataset multiple times, no real read operation happens anymore and the benchmark result becomes useless. Thus the following benchmark principles need to be applied:
+
+- 1D array: no cache needed as all data are read only once = disable cache
+
+- 2D array: make cache size exactly the size of the dataset, so that when the dataset is being re-read again in the next loop iteration, the cache is full which forces real read operations to happen

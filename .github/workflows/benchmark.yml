@@ -11,7 +11,18 @@ jobs:
     name: Run benchmarks
     runs-on: ubuntu-latest
     steps:
-      
+
+      - name: Check for high precision clock (https://aakinshin.net/posts/stopwatch/#pitfalls)
+        run: |
+          string=$(cat /proc/cpuinfo | tr ' ' '\n' | sort -u | grep -i "tsc")
+
+          if [[ $string == *constant_tsc* && $string == *nonstop_tsc* ]]; then
+            echo "Invariant TSC clock is available!"
+          else
+            echo "Invariant TSC clock is not available!" 1>&2
+            exit 1
+          fi
+
       - uses: actions/checkout@v4
         with:
           submodules: "true"

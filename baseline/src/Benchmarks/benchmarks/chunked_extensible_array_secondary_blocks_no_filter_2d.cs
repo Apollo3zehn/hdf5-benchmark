@@ -29,7 +29,7 @@ public class chunked_extensible_array_secondary_blocks_no_filter_2d
 
         H5P.set_chunk_cache(
             _daplId, 
-            rdcc_nslots: 521, 
+            rdcc_nslots: nint.MaxValue, 
             rdcc_nbytes: 25000 * 4 * sizeof(int), 
             rdcc_w0: 0.75
         );

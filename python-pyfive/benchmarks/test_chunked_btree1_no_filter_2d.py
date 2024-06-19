@@ -23,4 +23,4 @@ def test_chunked_btree1_no_filter_2d(benchmark):
 
     assert result[0, 1] == 1
     assert result[0, 100] == 100
-    assert result[999, 999] == 1000 * 1000 - 1
+    assert result[999, 9999] == 1000 * 10000 - 1

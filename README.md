@@ -21,5 +21,3 @@ Chunk caches are very important to improve performance. However, they also impac
 - 2D array: make cache size match the size of the dataset and reopen the dataset for each loop iteration. This adds a slight overhead but since there is a metadata chache, it should be OK.
 
 Closing and reopening is currently not required for `PureHDF` because the lifetime of the cache is only during the read operation itself. However, this might change in future.
-
-It is currently being clarified whether this method actually works: https://forum.hdfgroup.org/t/reset-chunk-cache/12424

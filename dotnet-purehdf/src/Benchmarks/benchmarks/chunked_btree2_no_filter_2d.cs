@@ -14,10 +14,10 @@ public class chunked_btree2_no_filter_2d
     private NativeDataset _dataset = default!;
 
     private H5DatasetAccess _datasetAccess = new H5DatasetAccess(
-        ChunkCache: new SimpleReadingChunkCache(byteCount: 2500 * 4 * sizeof(int))
+        ChunkCache: new SimpleReadingChunkCache(byteCount: 25000 * 4 * sizeof(int))
     );
 
-    private readonly int[,] _buffer = new int[2500, 4];
+    private readonly int[,] _buffer = new int[25000, 4];
 
     [GlobalSetup]
     public void GlobalSetup()

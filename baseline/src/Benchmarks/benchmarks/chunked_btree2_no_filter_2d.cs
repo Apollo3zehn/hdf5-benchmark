@@ -15,10 +15,10 @@ public class chunked_btree2_no_filter_2d
 
     private long _daplId = -1;
     
-    private nint _buffer = Marshal.AllocHGlobal(2500 * 4 * sizeof(int));
+    private nint _buffer = Marshal.AllocHGlobal(25000 * 4 * sizeof(int));
 
-    [GlobalSetup]
-    public void GlobalSetup()
+    [IterationSetup]
+    public void IterationSetup()
     {
         _fileId = H5F.open(FILE_PATH, H5F.ACC_RDONLY);
 
@@ -30,30 +30,30 @@ public class chunked_btree2_no_filter_2d
         H5P.set_chunk_cache(
             _daplId, 
             rdcc_nslots: 521, 
-            rdcc_nbytes: 2500 * 4 * sizeof(int), 
+            rdcc_nbytes: 25000 * 4 * sizeof(int), 
             rdcc_w0: 0.75
         );
+
+        _datasetId = H5D.open(_fileId, "chunked_btree2", _daplId);
     }
 
-    [GlobalCleanup]
-    public void GlobalCleanup()
+    [IterationCleanup]
+    public void IterationCleanup()
     {
         if (H5I.is_valid(_daplId) > 0)
             _ = H5P.close(_daplId);
 
         if (H5I.is_valid(_fileId) > 0)
             _ = H5F.close(_fileId);
+
+        if (H5I.is_valid(_datasetId) > 0)
+            _ = H5D.close(_datasetId);
     }
 
     [Benchmark]
     public unsafe void Run()
     {
-        _datasetId = H5D.open(_fileId, "chunked_btree2", _daplId);
-
         var result = H5D.read(_datasetId, H5T.NATIVE_INT32, H5S.ALL, H5S.ALL, H5P.DEFAULT, _buffer);
-
-        if (H5I.is_valid(_datasetId) > 0)
-            _ = H5D.close(_datasetId);
 
         if (result < 0)
             throw new Exception("Could not read data");

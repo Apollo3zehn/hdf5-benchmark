@@ -15,10 +15,10 @@ public class chunked_btree1_shuffle_deflate_1d
 
     private long _daplId = -1;
 
-    private nint _buffer = Marshal.AllocHGlobal(1000 * 100 * sizeof(long));
+    private nint _buffer = Marshal.AllocHGlobal(1000 * 1000 * sizeof(long));
 
-    [GlobalSetup]
-    public void GlobalSetup()
+    [IterationSetup]
+    public void IterationSetup()
     {
         _fileId = H5F.open(FILE_PATH, H5F.ACC_RDONLY);
 
@@ -31,8 +31,8 @@ public class chunked_btree1_shuffle_deflate_1d
         _datasetId = H5D.open(_fileId, "dataset", _daplId);
     }
 
-    [GlobalCleanup]
-    public void GlobalCleanup()
+    [IterationCleanup]
+    public void IterationCleanup()
     {
         if (H5I.is_valid(_daplId) > 0)
             _ = H5P.close(_daplId);

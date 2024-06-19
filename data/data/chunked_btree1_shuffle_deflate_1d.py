@@ -8,7 +8,7 @@ file_path = f"data/{test_name}.h5"
 random.seed(10)
 
 with h5py.File(file_path, "w") as h5_file:
-    shape = (1000*100,)
+    shape = (1000*1000,)
     chunks = (1000*100,)
     total_length = shape[0]
 

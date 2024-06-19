@@ -46,7 +46,7 @@ public class chunked_btree1_no_filter_2d {
     public void run(MyState state) {
         long[][] data = (long[][])state.Dataset.getData();
 
-        if (data[0][1] != 1 || data[0][100] != 100 || data[999][999] != 1000 * 1000 - 1)
+        if (data[0][1] != 1 || data[0][100] != 100 || data[999][9999] != 1000 * 10000 - 1)
             throw new RuntimeException("Invalid data");
     }
 

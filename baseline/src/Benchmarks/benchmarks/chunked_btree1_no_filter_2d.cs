@@ -15,10 +15,10 @@ public class chunked_btree1_no_filter_2d
 
     private long _daplId = -1;
     
-    private nint _buffer = Marshal.AllocHGlobal(1000 * 1000 * sizeof(long));
+    private nint _buffer = Marshal.AllocHGlobal(1000 * 10000 * sizeof(long));
 
-    [GlobalSetup]
-    public void GlobalSetup()
+    [IterationSetup]
+    public void IterationSetup()
     {
         _fileId = H5F.open(FILE_PATH, H5F.ACC_RDONLY);
 
@@ -30,16 +30,21 @@ public class chunked_btree1_no_filter_2d
         H5P.set_chunk_cache(
             _daplId, 
             rdcc_nslots: 521, 
-            rdcc_nbytes: 1000 * 1000 * sizeof(long), 
+            rdcc_nbytes: 1000 * 10000 * sizeof(long), 
             rdcc_w0: 0.75
         );
+
+        _datasetId = H5D.open(_fileId, "dataset", _daplId);
     }
 
-    [GlobalCleanup]
-    public void GlobalCleanup()
+    [IterationCleanup]
+    public void IterationCleanup()
     {
         if (H5I.is_valid(_daplId) > 0)
             _ = H5P.close(_daplId);
+
+        if (H5I.is_valid(_datasetId) > 0)
+            _ = H5D.close(_datasetId);
 
         if (H5I.is_valid(_fileId) > 0)
             _ = H5F.close(_fileId);
@@ -48,19 +53,14 @@ public class chunked_btree1_no_filter_2d
     [Benchmark]
     public unsafe void Run()
     {
-        _datasetId = H5D.open(_fileId, "dataset", _daplId);
-
         var result = H5D.read(_datasetId, H5T.NATIVE_INT64, H5S.ALL, H5S.ALL, H5P.DEFAULT, _buffer);
-
-        if (H5I.is_valid(_datasetId) > 0)
-            _ = H5D.close(_datasetId);
 
         if (result < 0)
             throw new Exception("Could not read data");
 
         var ptr = (long*)_buffer;
 
-        if (ptr[1] != 1 || ptr[100] != 100 || ptr[1000 * 1000 - 1] != 1000 * 1000 - 1)
+        if (ptr[1] != 1 || ptr[100] != 100 || ptr[1000 * 10000 - 1] != 1000 * 10000 - 1)
             throw new Exception("Invalid data");
     }
 }

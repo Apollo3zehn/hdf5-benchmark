@@ -19,8 +19,8 @@ public class chunked_btree1_no_filter_2d_slice
     
     private nint _buffer = Marshal.AllocHGlobal(100 * sizeof(long));
 
-    [GlobalSetup]
-    public void GlobalSetup()
+    [IterationSetup]
+    public void IterationSetup()
     {
         _fileId = H5F.open(FILE_PATH, H5F.ACC_RDONLY);
 
@@ -44,8 +44,8 @@ public class chunked_btree1_no_filter_2d_slice
             throw new Exception("Could not select hyperslab");
     }
 
-    [GlobalCleanup]
-    public void GlobalCleanup()
+    [IterationCleanup]
+    public void IterationCleanup()
     {
         if (H5I.is_valid(_fileSpaceId) > 0)
             _ = H5S.close(_fileSpaceId);

@@ -5,7 +5,7 @@ test_name = os.path.splitext(os.path.basename(__file__))[0]
 file_path = f"data/{test_name}.h5"
 
 with h5py.File(file_path, "w") as h5_file:
-    shape = (1000*100,)
+    shape = (1000*1000,)
     chunks = (1000,)
     total_length = shape[0]
 

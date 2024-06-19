@@ -14,7 +14,7 @@ public class chunked_btree1_shuffle_deflate_1d
     
     private NativeDataset _dataset = default!;
 
-    private readonly long[] _buffer = new long[1000 * 100];
+    private readonly long[] _buffer = new long[1000 * 1000];
 
     private H5DatasetAccess _datasetAccess = new H5DatasetAccess(
         ChunkCache: new SimpleReadingChunkCache(chunkSlotCount: 0, byteCount: 0)

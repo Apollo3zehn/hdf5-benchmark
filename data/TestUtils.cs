@@ -5,7 +5,7 @@ using HDF.PInvoke;
 
 public static class TestUtils
 {
-    private static int[] _testData = Enumerable.Range(0, 10_000).ToArray();
+    private static int[] _testData = Enumerable.Range(0, 100_000).ToArray();
 
     public static unsafe void AddChunkedDataset_Single_Chunk(long fileId)
     {

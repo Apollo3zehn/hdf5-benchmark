@@ -173,5 +173,180 @@
         }
       }
     }
+  },
+  {
+    "Commit": "29f2103",
+    "CommitMessage": "Improve cache usage",
+    "DateTime": "2024-06-19T21:54:35.912386Z",
+    "TestData": {
+      "chunked_extensible_array_elements_no_filter_2d": {
+        "baseline": {
+          "Mean": 410.441
+        },
+        "dotnet-purehdf": {
+          "Mean": 6981.778596354167
+        },
+        "java-jhdf": {
+          "Mean": 2804.241181208056
+        },
+        "python-pyfive": {
+          "Mean": 793.5447259977764
+        }
+      },
+      "chunked_fixed_array_paged_no_filter_2d": {
+        "baseline": {
+          "Mean": 258044.32966666666
+        },
+        "dotnet-purehdf": {
+          "Mean": 14742239.622666666
+        },
+        "java-jhdf": {
+          "Mean": 947335.9872
+        },
+        "python-pyfive": {
+          "Mean": 204042.3316109991
+        }
+      },
+      "chunked_btree2_no_filter_2d": {
+        "baseline": {
+          "Mean": 683.7036666666667
+        },
+        "dotnet-purehdf": {
+          "Mean": 7108.615833333333
+        },
+        "java-jhdf": {
+          "Mean": 2776.994883282504
+        },
+        "python-pyfive": {
+          "Mean": 795.2587679973249
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 27.268
+        },
+        "dotnet-purehdf": {
+          "Mean": 378.7273929036458
+        },
+        "java-jhdf": {
+          "Mean": 45026.37226666669
+        },
+        "python-pyfive": {
+          "Mean": 24395.441703998586
+        }
+      },
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 18718.935666666668
+        },
+        "dotnet-purehdf": {
+          "Mean": 25612.638875
+        },
+        "java-jhdf": {
+          "Mean": 46203.56266666666
+        },
+        "python-pyfive": {
+          "Mean": 24361.569092002013
+        }
+      },
+      "chunked_extensible_array_secondary_blocks_no_filter_2d": {
+        "baseline": {
+          "Mean": 75882.53266666667
+        },
+        "dotnet-purehdf": {
+          "Mean": 2038816.7813333333
+        },
+        "java-jhdf": {
+          "Mean": 346145.1676097561
+        },
+        "python-pyfive": {
+          "Mean": 65157.083055000614
+        }
+      },
+      "chunked_btree1_shuffle_deflate_1d": {
+        "baseline": {
+          "Mean": 19469.744
+        },
+        "dotnet-purehdf": {
+          "Mean": 9806.336359375
+        },
+        "java-jhdf": {
+          "Mean": 10917.623172413789
+        },
+        "python-pyfive": {
+          "Mean": 14306.595387000583
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 3311.5346666666665
+        },
+        "dotnet-purehdf": {
+          "Mean": 6709.6602578125
+        },
+        "java-jhdf": {
+          "Mean": 21309.703435684653
+        },
+        "python-pyfive": {
+          "Mean": 7329.3671639985405
+        }
+      },
+      "chunked_implicit_no_filter_2d": {
+        "baseline": {
+          "Mean": 411.2823333333333
+        },
+        "dotnet-purehdf": {
+          "Mean": 7031.6443046875
+        },
+        "java-jhdf": {
+          "Mean": 2951.0360458958494
+        },
+        "python-pyfive": {
+          "Mean": 790.6009870023354
+        }
+      },
+      "chunked_fixed_array_no_filter_2d": {
+        "baseline": {
+          "Mean": 410.8593333333333
+        },
+        "dotnet-purehdf": {
+          "Mean": 7105.08734375
+        },
+        "java-jhdf": {
+          "Mean": 2763.418856355116
+        },
+        "python-pyfive": {
+          "Mean": 790.8469790014578
+        }
+      },
+      "chunked_single_chunk_no_filter_2d": {
+        "baseline": {
+          "Mean": 73.61366666666667
+        },
+        "dotnet-purehdf": {
+          "Mean": 17.265197372436525
+        },
+        "java-jhdf": {
+          "Mean": 2240.069511071348
+        },
+        "python-pyfive": {
+          "Mean": 100.67019799953414
+        }
+      },
+      "chunked_extensible_array_data_blocks_no_filter_2d": {
+        "baseline": {
+          "Mean": 1750.6678333333332
+        },
+        "dotnet-purehdf": {
+          "Mean": 11149.3948125
+        },
+        "java-jhdf": {
+          "Mean": 11960.397283018867
+        },
+        "python-pyfive": {
+          "Mean": 2543.267378001019
+        }
+      }
+    }
   }
 ]

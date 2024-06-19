@@ -29,7 +29,7 @@ public class chunked_btree1_no_filter_2d
 
         H5P.set_chunk_cache(
             _daplId, 
-            rdcc_nslots: nint.MaxValue, 
+            rdcc_nslots: 10000, 
             rdcc_nbytes: 1000 * 10000 * sizeof(long), 
             rdcc_w0: 0.75
         );

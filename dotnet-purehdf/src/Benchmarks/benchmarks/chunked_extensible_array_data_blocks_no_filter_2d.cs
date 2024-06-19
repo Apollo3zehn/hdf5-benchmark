@@ -14,7 +14,7 @@ public class chunked_extensible_array_data_blocks_no_filter_2d
     private NativeDataset _dataset = default!;
 
     private H5DatasetAccess _datasetAccess = new H5DatasetAccess(
-        ChunkCache: new SimpleReadingChunkCache(chunkSlotCount: int.MaxValue, byteCount: 25000 * 4 * sizeof(int))
+        ChunkCache: new SimpleReadingChunkCache(chunkSlotCount: int.MaxValue, byteCount: ulong.MaxValue)
     );
 
     private readonly int[,] _buffer = new int[25000, 4];

@@ -29,8 +29,8 @@ public class chunked_implicit_no_filter_2d
 
         H5P.set_chunk_cache(
             _daplId, 
-            rdcc_nslots: 10000, 
-            rdcc_nbytes: 25000 * 4 * sizeof(int), 
+            rdcc_nslots: 20000, 
+            rdcc_nbytes: nint.MaxValue, 
             rdcc_w0: 0.75
         );
 

@@ -83,8 +83,6 @@
                 }    
             }
 
-            console.log(y);
-
             // render charts
             const container = document.getElementById("container");
         
@@ -111,7 +109,7 @@
                             .entries(benchmarkData)
                             .map(([toolName, toolData]) => ({
                                 label: toolNameMap[toolName],
-                                data: toolData,
+                                data: toolData.map(value => value / 1000),
                             }))
                     },
                     options: {
@@ -127,7 +125,7 @@
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: "µs / operation"
+                                    text: "ms / operation"
                                 },
                                 type: 'logarithmic'
                             }

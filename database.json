@@ -581,5 +581,156 @@
         }
       }
     }
+  },
+  {
+    "Commit": "f98439a",
+    "CommitMessage": "jHDF v0.8.6",
+    "DateTime": "2025-01-13T07:28:33.8843275Z",
+    "TestData": {
+      "chunked_btree2_no_filter_2d": {
+        "baseline": {
+          "Mean": 377.41683333333333
+        },
+        "dotnet-purehdf": {
+          "Mean": 4737.324205729167
+        },
+        "java-jhdf": {
+          "Mean": 2598.9624433497524
+        }
+      },
+      "chunked_btree1_shuffle_deflate_1d": {
+        "baseline": {
+          "Mean": 19215.444666666666
+        },
+        "dotnet-purehdf": {
+          "Mean": 10075.093520833334
+        },
+        "java-jhdf": {
+          "Mean": 9944.41070866141
+        },
+        "python-pyfive": {
+          "Mean": 13298.089800000014
+        }
+      },
+      "chunked_fixed_array_paged_no_filter_2d": {
+        "baseline": {
+          "Mean": 246786.52233333336
+        },
+        "dotnet-purehdf": {
+          "Mean": 5049.803723958333
+        },
+        "java-jhdf": {
+          "Mean": 830157.6192
+        }
+      },
+      "chunked_extensible_array_secondary_blocks_no_filter_2d": {
+        "baseline": {
+          "Mean": 73097.74666666667
+        },
+        "dotnet-purehdf": {
+          "Mean": 5419.170609375
+        },
+        "java-jhdf": {
+          "Mean": 283262.9760000001
+        }
+      },
+      "chunked_extensible_array_data_blocks_no_filter_2d": {
+        "baseline": {
+          "Mean": 1628.2483333333332
+        },
+        "dotnet-purehdf": {
+          "Mean": 4788.5600546875
+        },
+        "java-jhdf": {
+          "Mean": 9750.541824493725
+        }
+      },
+      "chunked_implicit_no_filter_2d": {
+        "baseline": {
+          "Mean": 359.4233333333333
+        },
+        "dotnet-purehdf": {
+          "Mean": 5026.759111979167
+        },
+        "java-jhdf": {
+          "Mean": 2598.202791083463
+        }
+      },
+      "chunked_btree1_no_filter_2d_slice": {
+        "baseline": {
+          "Mean": 26.265
+        },
+        "dotnet-purehdf": {
+          "Mean": 385.6070276692708
+        },
+        "java-jhdf": {
+          "Mean": 35583.35473972603
+        },
+        "python-pyfive": {
+          "Mean": 23540.197855000144
+        }
+      },
+      "chunked_fixed_array_no_filter_2d": {
+        "baseline": {
+          "Mean": 385.7153333333333
+        },
+        "dotnet-purehdf": {
+          "Mean": 4775.9736953125
+        },
+        "java-jhdf": {
+          "Mean": 2600.367563749676
+        }
+      },
+      "chunked_extensible_array_elements_no_filter_2d": {
+        "baseline": {
+          "Mean": 376.535
+        },
+        "dotnet-purehdf": {
+          "Mean": 4789.064802083333
+        },
+        "java-jhdf": {
+          "Mean": 2605.742748115414
+        }
+      },
+      "chunked_single_chunk_no_filter_2d": {
+        "baseline": {
+          "Mean": 69.51416666666667
+        },
+        "dotnet-purehdf": {
+          "Mean": 17.704820933024088
+        },
+        "java-jhdf": {
+          "Mean": 2152.1027770371943
+        }
+      },
+      "chunked_btree1_no_filter_1d": {
+        "baseline": {
+          "Mean": 2879.0536666666667
+        },
+        "dotnet-purehdf": {
+          "Mean": 6676.132903645833
+        },
+        "java-jhdf": {
+          "Mean": 16960.662186666672
+        },
+        "python-pyfive": {
+          "Mean": 7027.947621000238
+        }
+      },
+      "chunked_btree1_no_filter_2d": {
+        "baseline": {
+          "Mean": 18332.905333333332
+        },
+        "dotnet-purehdf": {
+          "Mean": 22159.33392708333
+        },
+        "java-jhdf": {
+          "Mean": 35255.60975084177
+        },
+        "python-pyfive": {
+          "Mean": 23365.972338999483
+        }
+      }
+    }
   }
 ]

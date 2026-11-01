@@ -13,7 +13,7 @@
         <dependency>
             <groupId>io.jhdf</groupId>
             <artifactId>jhdf</artifactId>
-            <version>0.8.6</version>
+            <version>0.15.0</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
@@ -39,7 +39,7 @@
         <!--
             Java source/target to use for compilation.
           -->
-        <javac.target>1.8</javac.target>
+        <javac.target>26</javac.target>
 
         <!--
             Name of the benchmark Uber-JAR to generate.
@@ -57,6 +57,9 @@
                     <compilerVersion>${javac.target}</compilerVersion>
                     <source>${javac.target}</source>
                     <target>${javac.target}</target>
+                    <compilerArgs>
+                        <arg>-proc:full</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>

@@ -37,12 +37,12 @@ public class chunked_single_chunk_no_filter_2d {
         }
     }
 
-    @Warmup(iterations = 10, time = 500, timeUnit = TimeUnit.MILLISECONDS)
+    @Warmup(iterations = 15, time = 500, timeUnit = TimeUnit.MILLISECONDS)
     @Measurement(iterations = 20, time = 500, timeUnit = TimeUnit.MILLISECONDS)
     @Benchmark
     @BenchmarkMode(Mode.SampleTime)
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
-    @Fork(1)
+    @Fork(2)
     public void run(MyState state) {
         int[][] data = (int[][])state.Dataset.getData();
 
